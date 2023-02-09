@@ -1,8 +1,12 @@
 import grid from 'gridfs-stream'
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const Base=process.env.BASE_URL;
 
 
-const url = "http://localhost:8000";
+
 
 
 let gfs, gridfsBucket;
@@ -23,7 +27,7 @@ export const uploadFile = async (request, response) => {
         return response.status(404).json('file not found')
 
     }
-    const imageUrl = `${url}/file/${request.file.filename}`;
+    const imageUrl = `${Base}/file/${request.file.filename}`;
     return response.status(200).json(imageUrl);
 }
 
